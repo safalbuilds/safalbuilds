@@ -7,7 +7,8 @@ USERNAME = "safalbuilds"
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT   = os.path.dirname(SCRIPT_DIR)
 ASSETS_DIR  = os.path.join(REPO_ROOT, "assets")
-TOKEN = os.environ.get("GH_TOKEN", "")
+# TOKEN = os.environ.get("GH_TOKEN", "")
+TOKEN = "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"
 
 HEADERS = {
     "Authorization": f"bearer {TOKEN}",
@@ -235,7 +236,7 @@ def make_streak_svg(s):
 # ── Card 3: Top Languages ─────────────────────────────────────────────────────
 
 def make_langs_svg(s):
-    W, H = 300, 205
+    W, H = 504, 205
     langs = s["langs"]
 
     out = svg_header(W, H)
@@ -247,19 +248,22 @@ def make_langs_svg(s):
 
     offset = 0
     for lang in langs:
-        seg_w = max(int(bar_w * lang["percent"] / 100), 1)
+        seg_w = max(int(bar_w * lang["percent"] / 100), 2)
         out += f'<rect x="{bar_x+offset}" y="{bar_y}" width="{seg_w}" height="{bar_h}" fill="{lang["color"]}"/>\n'
         offset += seg_w
 
+    col_count = 2
+    col_width = (W - 40) // col_count
+
     for i, lang in enumerate(langs):
-        col = i % 2
-        row = i // 2
-        x = 20 + col * 148
+        col = i % col_count
+        row = i // col_count
+        x = 20 + col * int(col_width)
         y = 82 + row * 36
         out += f'<circle cx="{x+6}" cy="{y}" r="5" fill="{lang["color"]}"/>\n'
         out += f'<text x="{x+16}" y="{y+4}" class="label">{lang["name"]}</text>\n'
-        out += f'<text x="{x+138}" y="{y+4}" class="sub" text-anchor="end">{lang["percent"]}%</text>\n'
-
+        percent_x = x + int(col_width) - 12
+        out += f'<text x="{percent_x}" y="{y+4}" class="sub" text-anchor="end">{lang["percent"]}%</text>\n'
     out += "</svg>"
     return out
 
