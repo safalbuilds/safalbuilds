@@ -7,8 +7,7 @@ USERNAME = "safalbuilds"
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT   = os.path.dirname(SCRIPT_DIR)
 ASSETS_DIR  = os.path.join(REPO_ROOT, "assets")
-# TOKEN = os.environ.get("GH_TOKEN", "")
-TOKEN = "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"
+TOKEN = os.environ.get("GH_TOKEN", "")
 
 HEADERS = {
     "Authorization": f"bearer {TOKEN}",
