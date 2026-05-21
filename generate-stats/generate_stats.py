@@ -4,7 +4,6 @@ from datetime import datetime, timezone
 
 USERNAME = "safalbuilds"
 
-# Always save assets relative to repo root (one level up from this script)
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT   = os.path.dirname(SCRIPT_DIR)
 ASSETS_DIR  = os.path.join(REPO_ROOT, "assets")
@@ -15,7 +14,7 @@ HEADERS = {
     "Content-Type": "application/json",
 }
 
-# ── GraphQL query ────────────────────────────────────────────────────────────
+# ── GraphQL query ─────────────────────────────────────────────────────────────
 
 QUERY = """
 query($username: String!) {
@@ -54,7 +53,7 @@ query($username: String!) {
 }
 """
 
-# ── Fetch data ────────────────────────────────────────────────────────────────
+# ── Fetch + parse ─────────────────────────────────────────────────────────────
 
 def fetch_data():
     response = requests.post(
@@ -71,53 +70,43 @@ def fetch_data():
 
 def parse_stats(user):
     repos = user["repositories"]["nodes"]
-
     total_stars = sum(r["stargazerCount"] for r in repos)
 
     lang_sizes = {}
     for repo in repos:
         for edge in repo["languages"]["edges"]:
-            name = edge["node"]["name"]
+            name  = edge["node"]["name"]
             color = edge["node"]["color"] or "#858585"
-            size = edge["size"]
+            size  = edge["size"]
             if name not in lang_sizes:
                 lang_sizes[name] = {"size": 0, "color": color}
             lang_sizes[name]["size"] += size
 
     total_size = sum(v["size"] for v in lang_sizes.values()) or 1
-    top_langs = sorted(lang_sizes.items(), key=lambda x: x[1]["size"], reverse=True)[:6]
+    top_langs  = sorted(lang_sizes.items(), key=lambda x: x[1]["size"], reverse=True)[:6]
     langs = [
         {"name": n, "color": v["color"], "percent": round(v["size"] / total_size * 100, 1)}
         for n, v in top_langs
     ]
 
-    contrib = user["contributionsCollection"]
+    contrib  = user["contributionsCollection"]
     calendar = contrib["contributionCalendar"]
-    all_days = [
-        day
-        for week in calendar["weeks"]
-        for day in week["contributionDays"]
-    ]
+    all_days = [day for week in calendar["weeks"] for day in week["contributionDays"]]
 
-    # streak calculation
     today = datetime.now(timezone.utc).date()
-    current_streak = 0
-    longest_streak = 0
-    temp = 0
+    current_streak = longest_streak = temp = 0
     for day in reversed(all_days):
         d = datetime.strptime(day["date"], "%Y-%m-%d").date()
         if d > today:
             continue
         if day["contributionCount"] > 0:
             temp += 1
-            if temp > longest_streak:
-                longest_streak = temp
-            if current_streak == 0 or d >= today:
+            longest_streak = max(longest_streak, temp)
+            if current_streak == 0:
                 current_streak = temp
         else:
-            if current_streak == 0:
-                pass
-            temp = 0
+            if current_streak != 0:
+                temp = 0
 
     return {
         "name": user["name"] or user["login"],
@@ -137,17 +126,20 @@ def parse_stats(user):
     }
 
 
-# ── SVG helpers ───────────────────────────────────────────────────────────────
+# ── Theme ─────────────────────────────────────────────────────────────────────
+# Base: #01000E  —  mixed with a blue-indigo palette
 
-BG        = "#1F222E"
-CARD_BG   = "#262B3D"
-BORDER    = "#2E3250"
-TEXT_PRI  = "#E8EAF6"
-TEXT_SEC  = "#8892B0"
-ACCENT    = "#58A6FF"
-GREEN     = "#3ABEFF"
-PURPLE    = "#A78BFA"
-GOLD      = "#F1C40F"
+BG       = "#01000E"   # near-black base
+CARD_BG  = "#05061A"   # slightly lighter deep navy
+BORDER   = "#0D1535"   # subtle blue-tinted border
+TEXT_PRI = "#C8D8F8"   # cool light blue-white
+TEXT_SEC = "#4A6A9E"   # muted steel blue
+ACCENT   = "#3B82F6"   # vivid blue
+BLUE2    = "#60A5FA"   # lighter blue highlight
+BLUE3    = "#93C5FD"   # soft blue for secondary values
+PURPLE   = "#818CF8"   # indigo-purple accent
+GLOW     = "#1D3461"   # deep blue for fill areas under line
+
 
 def svg_header(width, height):
     return (
@@ -155,13 +147,12 @@ def svg_header(width, height):
         f'xmlns="http://www.w3.org/2000/svg">\n'
         f'<style>\n'
         f'  text {{ font-family: "Segoe UI", Ubuntu, sans-serif; }}\n'
-        f'  .title {{ font-size: 14px; font-weight: 700; fill: {ACCENT}; }}\n'
+        f'  .title {{ font-size: 14px; font-weight: 700; fill: {BLUE2}; }}\n'
         f'  .label {{ font-size: 12px; fill: {TEXT_SEC}; }}\n'
         f'  .value {{ font-size: 13px; font-weight: 600; fill: {TEXT_PRI}; }}\n'
-        f'  .big   {{ font-size: 28px; font-weight: 700; fill: {TEXT_PRI}; }}\n'
         f'  .sub   {{ font-size: 11px; fill: {TEXT_SEC}; }}\n'
         f'</style>\n'
-        f'<rect width="{width}" height="{height}" rx="12" fill="{BG}" />\n'
+        f'<rect width="{width}" height="{height}" rx="12" fill="{BG}"/>\n'
         f'<rect x="1" y="1" width="{width-2}" height="{height-2}" rx="11" '
         f'fill="{CARD_BG}" stroke="{BORDER}" stroke-width="1"/>\n'
     )
@@ -172,33 +163,37 @@ def svg_header(width, height):
 def make_stats_svg(s):
     W, H = 495, 195
     rows = [
-        ("⭐ Total Stars",      str(s["stars"])),
-        ("🔨 Total Commits",    str(s["commits"])),
-        ("🔀 Pull Requests",    str(s["prs"])),
-        ("🐛 Issues",           str(s["issues"])),
-        ("📦 Contributed To",   str(s["repos"])),
-        ("👥 Followers",        str(s["followers"])),
+        ("Total Stars",     str(s["stars"]),    BLUE2),
+        ("Total Commits",   str(s["commits"]),  ACCENT),
+        ("Pull Requests",   str(s["prs"]),      PURPLE),
+        ("Issues",          str(s["issues"]),   BLUE3),
+        ("Contributed To",  str(s["repos"]),    BLUE2),
+        ("Followers",       str(s["followers"]),ACCENT),
     ]
 
     out = svg_header(W, H)
-    out += f'<text x="25" y="35" class="title">📊 {s["name"]}\'s GitHub Stats</text>\n'
+    out += f'<text x="25" y="35" class="title">GitHub Stats</text>\n'
 
-    for i, (label, value) in enumerate(rows):
+    # accent line under title
+    out += f'<line x1="25" y1="45" x2="{W-25}" y2="45" stroke="{BORDER}" stroke-width="0.5"/>\n'
+
+    for i, (label, value, color) in enumerate(rows):
         col = i % 2
         row = i // 2
-        x_label = 25 + col * 240
-        x_value = 220 + col * 240
-        y = 70 + row * 38
-        # dot
-        out += f'<circle cx="{x_label - 8}" cy="{y - 4}" r="3" fill="{ACCENT}" opacity="0.6"/>\n'
-        out += f'<text x="{x_label}" y="{y}" class="label">{label}</text>\n'
-        out += f'<text x="{x_value}" y="{y}" class="value" text-anchor="end">{value}</text>\n'
+        x_label = 40 + col * 240
+        x_value = 228 + col * 240
+        y = 72 + row * 36
 
-    # bottom bar
-    out += f'<rect x="25" y="{H-18}" width="445" height="3" rx="2" fill="{BORDER}"/>\n'
-    filled = int(min(s["total_contributions"] / 1000 * 445, 445))
-    out += f'<rect x="25" y="{H-18}" width="{filled}" height="3" rx="2" fill="{ACCENT}"/>\n'
-    out += f'<text x="25" y="{H-4}" class="sub">{s["total_contributions"]} contributions this year</text>\n'
+        # small colored square indicator
+        out += f'<rect x="{x_label-14}" y="{y-9}" width="6" height="6" rx="1" fill="{color}" opacity="0.8"/>\n'
+        out += f'<text x="{x_label}" y="{y}" class="label">{label}</text>\n'
+        out += f'<text x="{x_value}" y="{y}" class="value" text-anchor="end" fill="{color}">{value}</text>\n'
+
+    # bottom progress bar
+    filled = int(min(s["total_contributions"] / 1000 * (W - 50), W - 50))
+    out += f'<rect x="25" y="{H-20}" width="{W-50}" height="2" rx="1" fill="{BORDER}"/>\n'
+    out += f'<rect x="25" y="{H-20}" width="{filled}" height="2" rx="1" fill="{ACCENT}"/>\n'
+    out += f'<text x="25" y="{H-6}" class="sub">{s["total_contributions"]} contributions this year</text>\n'
 
     out += "</svg>"
     return out
@@ -210,25 +205,28 @@ def make_streak_svg(s):
     W, H = 495, 195
 
     out = svg_header(W, H)
-    out += f'<text x="{W//2}" y="30" class="title" text-anchor="middle">🔥 GitHub Streak</text>\n'
+    out += f'<text x="{W//2}" y="32" class="title" text-anchor="middle">GitHub Streak</text>\n'
+    out += f'<line x1="25" y1="42" x2="{W-25}" y2="42" stroke="{BORDER}" stroke-width="0.5"/>\n'
 
     sections = [
-        ("Total\nContributions", str(s["total_contributions"]), ACCENT),
-        ("Current\nStreak",      f'{s["current_streak"]} days', GREEN),
-        ("Longest\nStreak",      f'{s["longest_streak"]} days', PURPLE),
+        ("Total Contributions", str(s["total_contributions"]), ACCENT),
+        ("Current Streak",      f'{s["current_streak"]} days', BLUE2),
+        ("Longest Streak",      f'{s["longest_streak"]} days', PURPLE),
     ]
 
     for i, (label, value, color) in enumerate(sections):
         cx = 83 + i * 165
-        # divider
         if i > 0:
-            out += f'<line x1="{cx - 82}" y1="50" x2="{cx - 82}" y2="{H-30}" stroke="{BORDER}" stroke-width="1"/>\n'
-        # value
-        out += f'<text x="{cx}" y="105" font-family="Segoe UI,Ubuntu,sans-serif" font-size="30" font-weight="700" fill="{color}" text-anchor="middle">{value}</text>\n'
-        # label (two lines)
-        lines = label.split("\n")
-        for j, line in enumerate(lines):
-            out += f'<text x="{cx}" y="{140 + j*16}" class="sub" text-anchor="middle">{line}</text>\n'
+            out += f'<line x1="{cx-82}" y1="50" x2="{cx-82}" y2="{H-30}" stroke="{BORDER}" stroke-width="0.5"/>\n'
+
+        out += (
+            f'<text x="{cx}" y="108" font-family="Segoe UI,Ubuntu,sans-serif" '
+            f'font-size="30" font-weight="700" fill="{color}" text-anchor="middle">{value}</text>\n'
+        )
+        out += f'<text x="{cx}" y="138" class="sub" text-anchor="middle">{label}</text>\n'
+
+        # small dot under label
+        out += f'<circle cx="{cx}" cy="{H-20}" r="3" fill="{color}" opacity="0.5"/>\n'
 
     out += "</svg>"
     return out
@@ -237,90 +235,123 @@ def make_streak_svg(s):
 # ── Card 3: Top Languages ─────────────────────────────────────────────────────
 
 def make_langs_svg(s):
-    W, H = 300, 200
+    W, H = 300, 205
     langs = s["langs"]
 
     out = svg_header(W, H)
-    out += f'<text x="20" y="32" class="title">💻 Top Languages</text>\n'
+    out += f'<text x="20" y="32" class="title">Top Languages</text>\n'
+    out += f'<line x1="20" y1="42" x2="{W-20}" y2="42" stroke="{BORDER}" stroke-width="0.5"/>\n'
 
-    # progress bar
-    bar_x = 20
-    bar_y = 48
-    bar_w = W - 40
-    bar_h = 8
-    out += f'<rect x="{bar_x}" y="{bar_y}" width="{bar_w}" height="{bar_h}" rx="4" fill="{BORDER}"/>\n'
+    bar_x, bar_y, bar_w, bar_h = 20, 52, W - 40, 7
+    out += f'<rect x="{bar_x}" y="{bar_y}" width="{bar_w}" height="{bar_h}" rx="3" fill="{BORDER}"/>\n'
 
     offset = 0
     for lang in langs:
-        seg_w = int(bar_w * lang["percent"] / 100)
-        if seg_w < 1:
-            seg_w = 1
-        out += f'<rect x="{bar_x + offset}" y="{bar_y}" width="{seg_w}" height="{bar_h}" fill="{lang["color"]}"/>\n'
+        seg_w = max(int(bar_w * lang["percent"] / 100), 1)
+        out += f'<rect x="{bar_x+offset}" y="{bar_y}" width="{seg_w}" height="{bar_h}" fill="{lang["color"]}"/>\n'
         offset += seg_w
 
-    # legend
     for i, lang in enumerate(langs):
         col = i % 2
         row = i // 2
-        x = 20 + col * 145
-        y = 80 + row * 36
-        out += f'<circle cx="{x + 6}" cy="{y}" r="5" fill="{lang["color"]}"/>\n'
-        out += f'<text x="{x + 16}" y="{y + 4}" class="label">{lang["name"]}</text>\n'
-        out += f'<text x="{x + 130}" y="{y + 4}" class="sub" text-anchor="end">{lang["percent"]}%</text>\n'
+        x = 20 + col * 148
+        y = 82 + row * 36
+        out += f'<circle cx="{x+6}" cy="{y}" r="5" fill="{lang["color"]}"/>\n'
+        out += f'<text x="{x+16}" y="{y+4}" class="label">{lang["name"]}</text>\n'
+        out += f'<text x="{x+138}" y="{y+4}" class="sub" text-anchor="end">{lang["percent"]}%</text>\n'
 
     out += "</svg>"
     return out
 
 
-# ── Card 4: Contribution Graph ────────────────────────────────────────────────
+# ── Card 4: Contribution Line Curve ──────────────────────────────────────────
 
 def make_graph_svg(s):
-    W, H = 495, 150
-    all_days = s["all_days"][-364:]  # last 52 weeks
+    W, H = 495, 160
 
-    CELL = 10
-    GAP  = 2
-    OFF_X = 20
-    OFF_Y = 30
+    # use last 90 days for a clean curve
+    all_days = s["all_days"]
+    days_90  = all_days[-90:] if len(all_days) >= 90 else all_days
+    counts   = [d["contributionCount"] for d in days_90]
+    dates    = [d["date"] for d in days_90]
 
-    max_count = max((d["contributionCount"] for d in all_days), default=1) or 1
+    CHART_X  = 20
+    CHART_Y  = 30
+    CHART_W  = W - 40
+    CHART_H  = 90
+    n        = len(counts)
+    max_c    = max(counts) if max(counts) > 0 else 1
 
-    def day_color(count):
-        if count == 0:
-            return BORDER
-        ratio = count / max_count
-        if ratio < 0.25:
-            return "#1e3a5f"
-        elif ratio < 0.5:
-            return "#1a6091"
-        elif ratio < 0.75:
-            return "#1e90d4"
-        else:
-            return ACCENT
+    def px(i, c):
+        x = CHART_X + int(i / (n - 1) * CHART_W) if n > 1 else CHART_X
+        y = CHART_Y + CHART_H - int(c / max_c * CHART_H)
+        return x, y
+
+    # build smooth cubic bezier path
+    points = [px(i, c) for i, c in enumerate(counts)]
+
+    def smooth_path(pts):
+        if len(pts) < 2:
+            return f"M {pts[0][0]} {pts[0][1]}"
+        d = f"M {pts[0][0]} {pts[0][1]}"
+        for i in range(1, len(pts)):
+            x0, y0 = pts[i-1]
+            x1, y1 = pts[i]
+            cx = (x0 + x1) // 2
+            d += f" C {cx} {y0}, {cx} {y1}, {x1} {y1}"
+        return d
+
+    line_d = smooth_path(points)
+
+    # area fill path (close below)
+    bx, by = points[0]
+    ex, ey = points[-1]
+    area_d = line_d + f" L {ex} {CHART_Y+CHART_H} L {bx} {CHART_Y+CHART_H} Z"
 
     out = svg_header(W, H)
-    out += f'<text x="20" y="20" class="title">📈 Contribution Graph</text>\n'
 
-    # group into weeks
-    weeks = [all_days[i:i+7] for i in range(0, len(all_days), 7)]
+    # defs: gradient fill under curve
+    out += (
+        f'<defs>\n'
+        f'  <linearGradient id="areafill" x1="0" y1="0" x2="0" y2="1">\n'
+        f'    <stop offset="0%" stop-color="{ACCENT}" stop-opacity="0.35"/>\n'
+        f'    <stop offset="100%" stop-color="{BG}" stop-opacity="0"/>\n'
+        f'  </linearGradient>\n'
+        f'</defs>\n'
+    )
 
-    for wi, week in enumerate(weeks):
-        for di, day in enumerate(week):
-            x = OFF_X + wi * (CELL + GAP)
-            y = OFF_Y + di * (CELL + GAP)
-            color = day_color(day["contributionCount"])
-            out += f'<rect x="{x}" y="{y}" width="{CELL}" height="{CELL}" rx="2" fill="{color}"/>\n'
+    out += f'<text x="20" y="20" class="title">Contribution Activity</text>\n'
 
-    # month labels
+    # horizontal grid lines
+    for step in [0.25, 0.5, 0.75, 1.0]:
+        gy = CHART_Y + CHART_H - int(step * CHART_H)
+        out += f'<line x1="{CHART_X}" y1="{gy}" x2="{CHART_X+CHART_W}" y2="{gy}" stroke="{BORDER}" stroke-width="0.5" stroke-dasharray="3,4"/>\n'
+
+    # area fill
+    out += f'<path d="{area_d}" fill="url(#areafill)"/>\n'
+
+    # line
+    out += f'<path d="{line_d}" fill="none" stroke="{ACCENT}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\n'
+
+    # dots at peaks
+    peak_val = max(counts)
+    for i, c in enumerate(counts):
+        if c == peak_val:
+            px_, py_ = points[i]
+            out += f'<circle cx="{px_}" cy="{py_}" r="3" fill="{BLUE2}" stroke="{BG}" stroke-width="1.5"/>\n'
+
+    # month labels along bottom
     months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
     last_month = None
-    for wi, week in enumerate(weeks):
-        if week:
-            month = datetime.strptime(week[0]["date"], "%Y-%m-%d").month
-            if month != last_month:
-                x = OFF_X + wi * (CELL + GAP)
-                out += f'<text x="{x}" y="{H - 5}" class="sub">{months[month-1]}</text>\n'
-                last_month = month
+    for i, date_str in enumerate(dates):
+        m = datetime.strptime(date_str, "%Y-%m-%d").month
+        if m != last_month:
+            lx, _ = points[i]
+            out += f'<text x="{lx}" y="{CHART_Y+CHART_H+16}" class="sub" text-anchor="middle">{months[m-1]}</text>\n'
+            last_month = m
+
+    # baseline
+    out += f'<line x1="{CHART_X}" y1="{CHART_Y+CHART_H}" x2="{CHART_X+CHART_W}" y2="{CHART_Y+CHART_H}" stroke="{BORDER}" stroke-width="0.5"/>\n'
 
     out += "</svg>"
     return out
@@ -330,22 +361,26 @@ def make_graph_svg(s):
 
 def main():
     print("Fetching GitHub data...")
-    user = fetch_data()
+    user  = fetch_data()
     stats = parse_stats(user)
 
-    print(f"  Name:         {stats['name']}")
-    print(f"  Stars:        {stats['stars']}")
-    print(f"  Commits:      {stats['commits']}")
-    print(f"  Streak:       {stats['current_streak']} days")
-    print(f"  Contributions:{stats['total_contributions']}")
+    print(f"  Name:          {stats['name']}")
+    print(f"  Stars:         {stats['stars']}")
+    print(f"  Commits:       {stats['commits']}")
+    print(f"  Streak:        {stats['current_streak']} days")
+    print(f"  Contributions: {stats['total_contributions']}")
 
     os.makedirs(ASSETS_DIR, exist_ok=True)
 
-    for name, fn in [("stats.svg", make_stats_svg), ("streak.svg", make_streak_svg), ("langs.svg", make_langs_svg), ("graph.svg", make_graph_svg)]:
+    for name, fn in [
+        ("stats.svg",  make_stats_svg),
+        ("streak.svg", make_streak_svg),
+        ("langs.svg",  make_langs_svg),
+        ("graph.svg",  make_graph_svg),
+    ]:
         path = os.path.join(ASSETS_DIR, name)
-        svg_fn = fn(stats)
         with open(path, "w") as f:
-            f.write(svg_fn)
+            f.write(fn(stats))
         print(f"  ✓ {path}")
 
     print("Done.")
