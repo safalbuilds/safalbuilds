@@ -12,26 +12,26 @@
 <line x1="20" y1="42" x2="484" y2="42" stroke="#0D1535" stroke-width="0.5"/>
 <rect x="20" y="52" width="464" height="7" rx="3" fill="#0D1535"/>
 <rect x="20" y="52" width="109" height="7" fill="#3572A5"/>
-<rect x="129" y="52" width="107" height="7" fill="#f1e05a"/>
-<rect x="236" y="52" width="82" height="7" fill="#f34b7d"/>
-<rect x="318" y="52" width="72" height="7" fill="#e34c26"/>
-<rect x="390" y="52" width="56" height="7" fill="#555555"/>
+<rect x="129" y="52" width="105" height="7" fill="#f1e05a"/>
+<rect x="234" y="52" width="82" height="7" fill="#f34b7d"/>
+<rect x="316" y="52" width="73" height="7" fill="#e34c26"/>
+<rect x="389" y="52" width="57" height="7" fill="#555555"/>
 <rect x="446" y="52" width="31" height="7" fill="#663399"/>
 <circle cx="26" cy="82" r="5" fill="#3572A5"/>
 <text x="36" y="86" class="label">Python</text>
-<text x="240" y="86" class="sub" text-anchor="end">23.5%</text>
+<text x="240" y="86" class="sub" text-anchor="end">23.7%</text>
 <circle cx="258" cy="82" r="5" fill="#f1e05a"/>
 <text x="268" y="86" class="label">JavaScript</text>
-<text x="472" y="86" class="sub" text-anchor="end">23.1%</text>
+<text x="472" y="86" class="sub" text-anchor="end">22.7%</text>
 <circle cx="26" cy="118" r="5" fill="#f34b7d"/>
 <text x="36" y="122" class="label">C++</text>
-<text x="240" y="122" class="sub" text-anchor="end">17.7%</text>
+<text x="240" y="122" class="sub" text-anchor="end">17.8%</text>
 <circle cx="258" cy="118" r="5" fill="#e34c26"/>
 <text x="268" y="122" class="label">HTML</text>
-<text x="472" y="122" class="sub" text-anchor="end">15.7%</text>
+<text x="472" y="122" class="sub" text-anchor="end">15.8%</text>
 <circle cx="26" cy="154" r="5" fill="#555555"/>
 <text x="36" y="158" class="label">C</text>
-<text x="240" y="158" class="sub" text-anchor="end">12.2%</text>
+<text x="240" y="158" class="sub" text-anchor="end">12.3%</text>
 <circle cx="258" cy="154" r="5" fill="#663399"/>
 <text x="268" y="158" class="label">CSS</text>
 <text x="472" y="158" class="sub" text-anchor="end">6.7%</text>
