@@ -13,7 +13,7 @@ I started with **C and C++** to build a strong foundation, then picked up **Pyth
 
 Outside of coursework, I enjoy tinkering with my **Arch Linux** setup, building small tools that solve real problems, and exploring how things work under the hood.
 
-I'm still early in my journey — but I ship code, break things, and learn fast.
+I'm still early in my journey, but I ship code, break things, and learn fast.
 
 A few things about me:
 
