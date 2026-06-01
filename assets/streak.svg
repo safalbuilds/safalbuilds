@@ -10,7 +10,7 @@
 <rect x="1" y="1" width="493" height="193" rx="11" fill="#05061A" stroke="#0D1535" stroke-width="1"/>
 <text x="247" y="32" class="title" text-anchor="middle">GitHub Streak</text>
 <line x1="25" y1="42" x2="470" y2="42" stroke="#0D1535" stroke-width="0.5"/>
-<text x="83" y="108" font-family="Segoe UI,Ubuntu,sans-serif" font-size="30" font-weight="700" fill="#3B82F6" text-anchor="middle">443</text>
+<text x="83" y="108" font-family="Segoe UI,Ubuntu,sans-serif" font-size="30" font-weight="700" fill="#3B82F6" text-anchor="middle">419</text>
 <text x="83" y="138" class="sub" text-anchor="middle">Total Contributions</text>
 <circle cx="83" cy="175" r="3" fill="#3B82F6" opacity="0.5"/>
 <line x1="166" y1="50" x2="166" y2="165" stroke="#0D1535" stroke-width="0.5"/>
