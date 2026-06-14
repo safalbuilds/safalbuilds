@@ -18,7 +18,7 @@
 <text x="248" y="138" class="sub" text-anchor="middle">Current Streak</text>
 <circle cx="248" cy="175" r="3" fill="#60A5FA" opacity="0.5"/>
 <line x1="331" y1="50" x2="331" y2="165" stroke="#0D1535" stroke-width="0.5"/>
-<text x="413" y="108" font-family="Segoe UI,Ubuntu,sans-serif" font-size="30" font-weight="700" fill="#818CF8" text-anchor="middle">10 days</text>
+<text x="413" y="108" font-family="Segoe UI,Ubuntu,sans-serif" font-size="30" font-weight="700" fill="#818CF8" text-anchor="middle">9 days</text>
 <text x="413" y="138" class="sub" text-anchor="middle">Longest Streak</text>
 <circle cx="413" cy="175" r="3" fill="#818CF8" opacity="0.5"/>
 </svg>
