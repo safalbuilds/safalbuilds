@@ -73,8 +73,8 @@ I'm still early in my journey — but I ship code, break things, and learn fast.
 | Project | Description | Tech |
 |:---------|:------------|:----|
 | **[`URL Shortener`](https://github.com/safalbuilds/url_shortner)** | Production-ready URL shortener with analytics, PostgreSQL, Docker and TypeScript backend. | TypeScript • Express • PostgreSQL |
-| **[`Portfolio Website`](hthttps://github.com/safalbuilds/safalgautam.com.np)** | Personal portfolio showcasing projects, skills and experience with integrated blog md -> html backend system. | React • Express • Tailwind CSS |
-| **[`Password Manager API`](hthttps://github.com/safalbuilds/pwdmanager_api)** | Modern C++ Password Manager API built with Drogon, featuring API key authentication, JSON storage, and basic encrypted password handling. | C++ |
+| **[`Portfolio Website`](https://github.com/safalbuilds/safalgautam.com.np)** | Personal portfolio showcasing projects, skills and experience with integrated blog md -> html backend system. | React • Express • Tailwind CSS |
+| **[`Password Manager API`](https://github.com/safalbuilds/pwdmanager_api)** | Modern C++ Password Manager API built with Drogon, featuring API key authentication, JSON storage, and basic encrypted password handling. | C++ |
 
 ---
 
