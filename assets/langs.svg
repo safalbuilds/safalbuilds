@@ -1,0 +1,38 @@
+<svg width="504" height="205" viewBox="0 0 504 205" xmlns="http://www.w3.org/2000/svg">
+<style>
+  text { font-family: "Segoe UI", Ubuntu, sans-serif; }
+  .title { font-size: 14px; font-weight: 700; fill: #60A5FA; }
+  .label { font-size: 12px; fill: #4A6A9E; }
+  .value { font-size: 13px; font-weight: 600; fill: #C8D8F8; }
+  .sub   { font-size: 11px; fill: #4A6A9E; }
+</style>
+<rect width="504" height="205" rx="12" fill="#01000E"/>
+<rect x="1" y="1" width="502" height="203" rx="11" fill="#05061A" stroke="#0D1535" stroke-width="1"/>
+<text x="20" y="32" class="title">Top Languages</text>
+<line x1="20" y1="42" x2="484" y2="42" stroke="#0D1535" stroke-width="0.5"/>
+<rect x="20" y="52" width="464" height="7" rx="3" fill="#0D1535"/>
+<rect x="20" y="52" width="89" height="7" fill="#DA5B0B"/>
+<rect x="109" y="52" width="81" height="7" fill="#3572A5"/>
+<rect x="190" y="52" width="77" height="7" fill="#f34b7d"/>
+<rect x="267" y="52" width="75" height="7" fill="#f1e05a"/>
+<rect x="342" y="52" width="55" height="7" fill="#e34c26"/>
+<rect x="397" y="52" width="47" height="7" fill="#555555"/>
+<circle cx="26" cy="82" r="5" fill="#DA5B0B"/>
+<text x="36" y="86" class="label">Jupyter Notebook</text>
+<text x="240" y="86" class="sub" text-anchor="end">19.2%</text>
+<circle cx="258" cy="82" r="5" fill="#3572A5"/>
+<text x="268" y="86" class="label">Python</text>
+<text x="472" y="86" class="sub" text-anchor="end">17.6%</text>
+<circle cx="26" cy="118" r="5" fill="#f34b7d"/>
+<text x="36" y="122" class="label">C++</text>
+<text x="240" y="122" class="sub" text-anchor="end">16.7%</text>
+<circle cx="258" cy="118" r="5" fill="#f1e05a"/>
+<text x="268" y="122" class="label">JavaScript</text>
+<text x="472" y="122" class="sub" text-anchor="end">16.2%</text>
+<circle cx="26" cy="154" r="5" fill="#e34c26"/>
+<text x="36" y="158" class="label">HTML</text>
+<text x="240" y="158" class="sub" text-anchor="end">12.0%</text>
+<circle cx="258" cy="154" r="5" fill="#555555"/>
+<text x="268" y="158" class="label">C</text>
+<text x="472" y="158" class="sub" text-anchor="end">10.2%</text>
+</svg>
