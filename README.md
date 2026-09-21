@@ -72,7 +72,7 @@
 <h2 align="center"><code>── Statistics ──</code></h2>
 
 <p align="center">
-  <img height="170em" src="https://github-stats-extended.vercel.app/api/top-langs?username=safalbuilds&layout=compact&theme=tokyonight&hide_border=true&langs_count=6&size_weight=0.5&count_weight=0"/>
+  <img height="170em" src=".5"/>
 </p>
 
 <p align="center">
