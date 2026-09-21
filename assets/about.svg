@@ -1,0 +1,94 @@
+<svg width="600" height="410" viewBox="0 0 600 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Safal Gautam — terminal about me">
+  <rect width="600" height="410" rx="14" fill="#1a1b27"/>
+  <path d="M14,0 H586 Q600,0 600,14 V42 H0 V14 Q0,0 14,0 Z" fill="#151521"/>
+  <circle cx="28" cy="21" r="5.5" fill="#FF5F56"/>
+  <circle cx="42" cy="21" r="5.5" fill="#FFBD2E"/>
+  <circle cx="56" cy="21" r="5.5" fill="#27C93F"/>
+  <text x="300" y="27" text-anchor="middle" font-size="12" fill="#9aa5ce" font-family="Ubuntu Mono, JetBrains Mono, monospace">safal@archlinux: ~/about</text>
+  <text x="556" y="27" text-anchor="end" font-size="11" fill="#4a5578" font-family="Ubuntu Mono, JetBrains Mono, monospace">fastfetch</text>
+  <circle cx="576" cy="21" r="3" fill="#27C93F" opacity="0.9"/>
+  <line x1="0" y1="42" x2="600" y2="42" stroke="#2e2f42" stroke-width="1" opacity="0.7"/>
+
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="0.12s" dur="0.5s" fill="freeze"/>
+    <text x="24" y="64" font-size="11" fill="#bf91f3" font-family="Ubuntu Mono, JetBrains Mono, monospace">▸</text>
+    <text x="40" y="64" font-size="11" font-weight="700" fill="#70a5fd" font-family="Ubuntu Mono, JetBrains Mono, monospace">OS</text>
+    <text x="104" y="64" font-size="11" fill="#38bdae" font-family="Ubuntu Mono, JetBrains Mono, monospace">Arch Linux x86_64</text>
+  </g>
+
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="0.20s" dur="0.5s" fill="freeze"/>
+    <text x="24" y="94" font-size="11" fill="#bf91f3" font-family="Ubuntu Mono, JetBrains Mono, monospace">▸</text>
+    <text x="40" y="94" font-size="11" font-weight="700" fill="#70a5fd" font-family="Ubuntu Mono, JetBrains Mono, monospace">Role</text>
+    <text x="104" y="94" font-size="11" fill="#38bdae" font-family="Ubuntu Mono, JetBrains Mono, monospace">Full-Stack · backend-first, frontend-ready</text>
+  </g>
+
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="0.28s" dur="0.5s" fill="freeze"/>
+    <text x="24" y="124" font-size="11" fill="#bf91f3" font-family="Ubuntu Mono, JetBrains Mono, monospace">▸</text>
+    <text x="40" y="124" font-size="11" font-weight="700" fill="#70a5fd" font-family="Ubuntu Mono, JetBrains Mono, monospace">Uptime</text>
+    <text x="104" y="124" font-size="11" fill="#9aa5ce" font-family="Ubuntu Mono, JetBrains Mono, monospace">building since 2021</text>
+  </g>
+
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="0.36s" dur="0.5s" fill="freeze"/>
+    <text x="24" y="154" font-size="11" fill="#bf91f3" font-family="Ubuntu Mono, JetBrains Mono, monospace">▸</text>
+    <text x="40" y="154" font-size="11" font-weight="700" fill="#70a5fd" font-family="Ubuntu Mono, JetBrains Mono, monospace">Host</text>
+    <text x="104" y="154" font-size="11" fill="#9aa5ce" font-family="Ubuntu Mono, JetBrains Mono, monospace">Dharan, Nepal</text>
+  </g>
+
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="0.44s" dur="0.5s" fill="freeze"/>
+    <text x="24" y="184" font-size="11" fill="#bf91f3" font-family="Ubuntu Mono, JetBrains Mono, monospace">▸</text>
+    <text x="40" y="184" font-size="11" font-weight="700" fill="#70a5fd" font-family="Ubuntu Mono, JetBrains Mono, monospace">Lang</text>
+    <text x="104" y="184" font-size="11" fill="#9aa5ce" font-family="Ubuntu Mono, JetBrains Mono, monospace">TypeScript · C++ · Python · JavaScript</text>
+  </g>
+
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="0.52s" dur="0.5s" fill="freeze"/>
+    <text x="24" y="214" font-size="11" fill="#bf91f3" font-family="Ubuntu Mono, JetBrains Mono, monospace">▸</text>
+    <text x="40" y="214" font-size="11" font-weight="700" fill="#70a5fd" font-family="Ubuntu Mono, JetBrains Mono, monospace">Stack</text>
+    <text x="104" y="214" font-size="11" fill="#9aa5ce" font-family="Ubuntu Mono, JetBrains Mono, monospace">MERN · PostgreSQL · Jupyter</text>
+  </g>
+
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="0.60s" dur="0.5s" fill="freeze"/>
+    <text x="24" y="244" font-size="11" fill="#bf91f3" font-family="Ubuntu Mono, JetBrains Mono, monospace">▸</text>
+    <text x="40" y="244" font-size="11" font-weight="700" fill="#70a5fd" font-family="Ubuntu Mono, JetBrains Mono, monospace">Tools</text>
+    <text x="104" y="244" font-size="11" fill="#9aa5ce" font-family="Ubuntu Mono, JetBrains Mono, monospace">Git/GitHub · Linux · Docker</text>
+  </g>
+
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="0.68s" dur="0.5s" fill="freeze"/>
+    <text x="24" y="274" font-size="11" fill="#bf91f3" font-family="Ubuntu Mono, JetBrains Mono, monospace">▸</text>
+    <text x="40" y="274" font-size="11" font-weight="700" fill="#70a5fd" font-family="Ubuntu Mono, JetBrains Mono, monospace">Terminal</text>
+    <text x="104" y="274" font-size="11" fill="#9aa5ce" font-family="Ubuntu Mono, JetBrains Mono, monospace">ghostty</text>
+  </g>
+
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="0.76s" dur="0.5s" fill="freeze"/>
+    <text x="24" y="304" font-size="11" fill="#bf91f3" font-family="Ubuntu Mono, JetBrains Mono, monospace">▸</text>
+    <text x="40" y="304" font-size="11" font-weight="700" fill="#70a5fd" font-family="Ubuntu Mono, JetBrains Mono, monospace">Contact</text>
+    <text x="104" y="304" font-size="11" fill="#38bdae" font-family="Ubuntu Mono, JetBrains Mono, monospace">contact@safalgautam.com.np</text>
+  </g>
+
+  <rect x="580" y="66" width="4" height="264" rx="2" fill="#2e2f42" opacity="0.5"/>
+  <rect x="580" y="66" width="4" height="70" rx="2" fill="#70a5fd" opacity="0.4">
+    <animate attributeName="y" values="66;260;66" dur="7s" repeatCount="indefinite"/>
+  </rect>
+
+  <line x1="24" y1="352" x2="576" y2="352" stroke="#2e2f42" stroke-width="1" opacity="0.4"/>
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="1.0s" dur="0.5s" fill="freeze"/>
+    <text x="24" y="378" font-size="13" font-family="Ubuntu Mono, JetBrains Mono, monospace">
+      <tspan fill="#70a5fd">safalbuilds@archlinux:~$</tspan><tspan fill="#9aa5ce"> whoami</tspan>
+    </text>
+  </g>
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="1.25s" dur="0.5s" fill="freeze"/>
+    <text x="24" y="399" font-size="13" fill="#38bdae" font-family="Ubuntu Mono, JetBrains Mono, monospace">clean code · simple solutions</text>
+    <rect x="254" y="389" width="8" height="12" rx="2" fill="#38bdae">
+      <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.45;0.55;1" begin="1.45s" dur="1.1s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+</svg>
