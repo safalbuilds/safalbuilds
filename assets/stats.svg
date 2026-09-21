@@ -21,7 +21,7 @@
                            from="10,79" to="25,79" begin="0.15s" dur="0.5s" fill="freeze"/>
         <g transform="translate(0,-7) scale(0.85)"><path d="M11.93 8.5a4.002 4.002 0 0 1-7.86 0H.75a.75.75 0 0 1 0-1.5h3.32a4.002 4.002 0 0 1 7.86 0h3.32a.75.75 0 0 1 0 1.5Zm-1.43-.75a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z" fill="#bf91f3"/></g>
         <text x="24" y="0" font-size="14" fill="#9aa5ce">Total Commits:</text>
-        <text x="300" y="0" font-size="14" font-weight="700" fill="#38bdae">567</text>
+        <text x="300" y="0" font-size="14" font-weight="700" fill="#38bdae">569</text>
       </g>
       <g transform="translate(25,103)" opacity="0">
         <animate attributeName="opacity" from="0" to="1" begin="0.30s" dur="0.5s" fill="freeze"/>
@@ -56,7 +56,7 @@
                 stroke-dasharray="251.3"
                 stroke-dashoffset="251.3">
           <animate attributeName="stroke-dashoffset"
-                   from="251.3" to="152.2"
+                   from="251.3" to="151.9"
                    begin="0.9s" dur="1.2s" fill="freeze"
                    calcMode="spline" keySplines="0.4 0 0.2 1"/>
         </circle>
