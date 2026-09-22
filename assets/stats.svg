@@ -13,7 +13,7 @@
                            from="10,55" to="25,55" begin="0.00s" dur="0.5s" fill="freeze"/>
         <g transform="translate(0,-7) scale(0.85)"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z" fill="#bf91f3"/></g>
         <text x="24" y="0" font-size="14" fill="#9aa5ce">Total Stars Earned:</text>
-        <text x="300" y="0" font-size="14" font-weight="700" fill="#38bdae">10</text>
+        <text x="300" y="0" font-size="14" font-weight="700" fill="#38bdae">8</text>
       </g>
       <g transform="translate(25,79)" opacity="0">
         <animate attributeName="opacity" from="0" to="1" begin="0.15s" dur="0.5s" fill="freeze"/>
@@ -21,7 +21,7 @@
                            from="10,79" to="25,79" begin="0.15s" dur="0.5s" fill="freeze"/>
         <g transform="translate(0,-7) scale(0.85)"><path d="M11.93 8.5a4.002 4.002 0 0 1-7.86 0H.75a.75.75 0 0 1 0-1.5h3.32a4.002 4.002 0 0 1 7.86 0h3.32a.75.75 0 0 1 0 1.5Zm-1.43-.75a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z" fill="#bf91f3"/></g>
         <text x="24" y="0" font-size="14" fill="#9aa5ce">Total Commits:</text>
-        <text x="300" y="0" font-size="14" font-weight="700" fill="#38bdae">569</text>
+        <text x="300" y="0" font-size="14" font-weight="700" fill="#38bdae">547</text>
       </g>
       <g transform="translate(25,103)" opacity="0">
         <animate attributeName="opacity" from="0" to="1" begin="0.30s" dur="0.5s" fill="freeze"/>
@@ -56,7 +56,7 @@
                 stroke-dasharray="251.3"
                 stroke-dashoffset="251.3">
           <animate attributeName="stroke-dashoffset"
-                   from="251.3" to="151.9"
+                   from="251.3" to="155.7"
                    begin="0.9s" dur="1.2s" fill="freeze"
                    calcMode="spline" keySplines="0.4 0 0.2 1"/>
         </circle>

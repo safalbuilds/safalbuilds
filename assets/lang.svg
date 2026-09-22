@@ -15,24 +15,24 @@
   
   <line x1="20" y1="42" x2="484" y2="42" stroke="#2e2f42" stroke-width="0.5"/>
   <rect x="20" y="52" width="464" height="7" rx="3" fill="#2e2f42"/>
-  <rect x="20.0" y="52" width="115.0" height="7" fill="#f1e05a"/><rect x="135.0" y="52" width="102.1" height="7" fill="#DA5B0B"/><rect x="237.1" y="52" width="77.3" height="7" fill="#3572A5"/><rect x="314.4" y="52" width="57.3" height="7" fill="#f34b7d"/><rect x="371.8" y="52" width="38.6" height="7" fill="#e34c26"/><rect x="410.4" y="52" width="37.8" height="7" fill="#555555"/>
+  <rect x="20.0" y="52" width="119.0" height="7" fill="#f1e05a"/><rect x="139.0" y="52" width="107.0" height="7" fill="#DA5B0B"/><rect x="246.1" y="52" width="81.0" height="7" fill="#3572A5"/><rect x="327.1" y="52" width="60.1" height="7" fill="#f34b7d"/><rect x="387.2" y="52" width="39.6" height="7" fill="#555555"/><rect x="426.8" y="52" width="26.0" height="7" fill="#e34c26"/>
   
       <circle cx="26" cy="82" r="5" fill="#f1e05a"/>
       <text x="36" y="86" class="label">JavaScript</text>
-      <text x="240" y="86" class="sub" text-anchor="end">24.8%</text>
+      <text x="240" y="86" class="sub" text-anchor="end">25.6%</text>
       <circle cx="258" cy="82" r="5" fill="#DA5B0B"/>
       <text x="268" y="86" class="label">Jupyter Notebook</text>
-      <text x="472" y="86" class="sub" text-anchor="end">22.0%</text>
+      <text x="472" y="86" class="sub" text-anchor="end">23.1%</text>
       <circle cx="26" cy="118" r="5" fill="#3572A5"/>
       <text x="36" y="122" class="label">Python</text>
-      <text x="240" y="122" class="sub" text-anchor="end">16.7%</text>
+      <text x="240" y="122" class="sub" text-anchor="end">17.5%</text>
       <circle cx="258" cy="118" r="5" fill="#f34b7d"/>
       <text x="268" y="122" class="label">C++</text>
-      <text x="472" y="122" class="sub" text-anchor="end">12.4%</text>
-      <circle cx="26" cy="154" r="5" fill="#e34c26"/>
-      <text x="36" y="158" class="label">HTML</text>
-      <text x="240" y="158" class="sub" text-anchor="end">8.3%</text>
-      <circle cx="258" cy="154" r="5" fill="#555555"/>
-      <text x="268" y="158" class="label">C</text>
-      <text x="472" y="158" class="sub" text-anchor="end">8.2%</text>
+      <text x="472" y="122" class="sub" text-anchor="end">13.0%</text>
+      <circle cx="26" cy="154" r="5" fill="#555555"/>
+      <text x="36" y="158" class="label">C</text>
+      <text x="240" y="158" class="sub" text-anchor="end">8.5%</text>
+      <circle cx="258" cy="154" r="5" fill="#e34c26"/>
+      <text x="268" y="158" class="label">HTML</text>
+      <text x="472" y="158" class="sub" text-anchor="end">5.6%</text>
 </svg>
